@@ -62,12 +62,11 @@ Note *selectedNote;
         // Remove the row from data model
         [allNotes removeObjectAtIndex:indexPath.row];
         
-        // Request table view to reload
-        [self.tableView reloadData];
-        
-        // TODO: to animate tableview's refresh
-//        NSIndexSet *sections = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(indexPath.row + 1, allNotes.count - indexPath.row)];
-//        [self.tableView reloadSections:sections withRowAnimation:UITableViewRowAnimationAutomatic];
+        // capture selected row
+        UITableViewCell *currentCell = [self.tableView cellForRowAtIndexPath:indexPath];
+
+        // Launch reload for the two index path
+        [self.tableView deleteRowsAtIndexPaths:@[[self.tableView indexPathForCell:currentCell]] withRowAnimation:UITableViewRowAnimationFade];
     }
 }
 
